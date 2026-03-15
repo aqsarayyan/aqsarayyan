@@ -12,33 +12,30 @@ export default function HeroSection() {
   };
 
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero"
-    >
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero">
       <ThreeScene />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid md:grid-cols-2 gap-10 items-center max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
 
-          {/* PHOTO LEFT */}
+          {/* FOTO PROFIL */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex justify-center"
+            className="flex-shrink-0"
           >
             <img
               src="/profile.jpg"
               alt="Profile"
-              className="w-72 h-72 object-cover rounded-2xl shadow-glow"
+              className="w-52 h-52 md:w-72 md:h-72 object-cover rounded-full border-4 border-primary shadow-glow"
             />
           </motion.div>
 
-          {/* TEXT RIGHT */}
-          <div className="text-center md:text-left">
+          {/* TEXT CONTENT */}
+          <div className="text-center md:text-left flex-1">
 
-            <motion.span
+            <motion.span 
               className="inline-block px-4 py-2 rounded-full glass text-sm font-medium text-primary mb-6"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -74,8 +71,8 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.7 }}
               className="flex flex-col sm:flex-row items-center md:items-start gap-4 mb-10"
             >
-              <Button
-                size="lg"
+              <Button 
+                size="lg" 
                 className="rounded-full px-8 shadow-glow"
                 onClick={() => {
                   const element = document.querySelector('#projects');
@@ -85,9 +82,9 @@ export default function HeroSection() {
                 Lihat Projects
               </Button>
 
-              <Button
-                variant="outline"
-                size="lg"
+              <Button 
+                variant="outline" 
+                size="lg" 
                 className="rounded-full px-8"
                 onClick={() => {
                   const element = document.querySelector('#contact');
@@ -98,24 +95,35 @@ export default function HeroSection() {
               </Button>
             </motion.div>
 
-            {/* PHOTO LEFT */}
-<motion.div
-  initial={{ opacity: 0, x: -40 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 0.8 }}
-  className="flex justify-center"
->
-  <img
-    src="/profile.jpg"
-    alt="Profile"
-    className="w-72 h-72 object-cover rounded-full shadow-glow border-4 border-primary"
-  />
-</motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+              className="flex items-center gap-6 justify-center md:justify-start"
+            >
+              {[
+                { icon: Github, href: '#', label: 'GitHub' },
+                { icon: Linkedin, href: '#', label: 'LinkedIn' },
+                { icon: Youtube, href: '#', label: 'YouTube' },
+                { icon: Instagram, href: '#', label: 'Instagram' },
+              ].map((social) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  className="p-3 rounded-full glass hover:shadow-glow transition-all duration-300"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label={social.label}
+                >
+                  <social.icon className="h-5 w-5 text-foreground" />
+                </motion.a>
+              ))}
+            </motion.div>
+
           </div>
         </div>
       </div>
 
-      {/* SCROLL BUTTON */}
       <motion.button
         onClick={scrollToAbout}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 p-3 rounded-full glass animate-float cursor-pointer"
