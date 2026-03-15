@@ -19,19 +19,19 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@developer.com',
-    href: 'mailto:hello@developer.com',
+    value: 'aqsarayyan@gmail.com',
+    href: 'mailto:aqsarayyan@gmail.com',
   },
   {
     icon: Phone,
     label: 'Telepon',
-    value: '+62 812 3456 7890',
-    href: 'tel:+6281234567890',
+    value: '+62 813 7747 0090',
+    href: 'tel:+6281377470090',
   },
   {
     icon: MapPin,
     label: 'Lokasi',
-    value: 'Jakarta, Indonesia',
+    value: 'Banda Aceh, Indonesia',
     href: '#',
   },
 ];
@@ -129,9 +129,9 @@ export default function ContactSection() {
                 Mari Berkolaborasi!
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Punya project menarik atau ingin berkolaborasi? Jangan ragu untuk 
-                menghubungi saya. Saya selalu terbuka untuk diskusi tentang project 
-                baru, ide kreatif, atau kesempatan untuk menjadi bagian dari visi Anda.
+                Saya adalah seorang student developer yang tertarik pada programming,
+                web development, dan teknologi. Jika Anda ingin berdiskusi tentang
+                project, kolaborasi, atau teknologi, jangan ragu untuk menghubungi saya.
               </p>
             </div>
 
