@@ -11,11 +11,11 @@ export default function AboutSection() {
   ];
 
   const skills = [
-    'React',
-    'JavaScript',
     'Python',
-    'Tailwind',
-    'Git',
+    'JavaScript',
+    'C++',
+    'HTML',
+    'etc...',
   ];
 
   return (
