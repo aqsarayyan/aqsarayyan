@@ -82,14 +82,16 @@ export default function SkillsSection() {
 
           {/* Web Development */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="p-6 bg-blue-900/20 rounded-2xl shadow-md hover:shadow-lg transition-shadow"
+            className="p-6 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-lg hover:shadow-xl transition-all"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 rounded-xl bg-blue-800/30">
+              <div className="p-3 rounded-xl bg-white/20">
                 <span className="text-2xl">🌐</span>
               </div>
               <h3 className="font-display text-xl font-bold text-white">
@@ -106,14 +108,16 @@ export default function SkillsSection() {
 
           {/* Programming */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="p-6 bg-blue-900/20 rounded-2xl shadow-md hover:shadow-lg transition-shadow"
+            className="p-6 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-lg hover:shadow-xl transition-all"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 rounded-xl bg-blue-800/30">
+              <div className="p-3 rounded-xl bg-white/20">
                 <span className="text-2xl">💻</span>
               </div>
               <h3 className="font-display text-xl font-bold text-white">
@@ -130,14 +134,16 @@ export default function SkillsSection() {
 
           {/* Software & Tech */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="p-6 bg-blue-900/20 rounded-2xl shadow-md hover:shadow-lg transition-shadow"
+            className="p-6 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-lg hover:shadow-xl transition-all"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 rounded-xl bg-blue-800/30">
+              <div className="p-3 rounded-xl bg-white/20">
                 <span className="text-2xl">🛠️</span>
               </div>
               <h3 className="font-display text-xl font-bold text-white">
