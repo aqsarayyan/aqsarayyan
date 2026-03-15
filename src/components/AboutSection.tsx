@@ -40,7 +40,7 @@ export default function AboutSection() {
                 </div>
               </div>
               <div className="absolute -bottom-6 -right-6 p-4 glass rounded-xl shadow-card">
-                <p className="font-display font-bold text-2xl text-gradient">5+ Tahun</p>
+                <p className="font-display font-bold text-2xl text-gradient">3+ Tahun</p>
                 <p className="text-sm text-muted-foreground">Pengalaman</p>
               </div>
             </div>
@@ -54,7 +54,7 @@ export default function AboutSection() {
             className="space-y-6"
           >
             <h3 className="font-display text-2xl md:text-3xl font-bold">
-              Passionate Developer &amp; Creator
+              Passionate Student &amp; Coder
             </h3>
             <p className="text-muted-foreground leading-relaxed">
               Saya adalah seorang siswa di MAN 1 Banda Aceh yang memiliki minat besar dalam dunia
