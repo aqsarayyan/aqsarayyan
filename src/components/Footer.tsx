@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Tiktok, Instagram, Heart } from 'lucide-react';
+import { Github, Linkedin, Youtube, Instagram, Heart } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -7,7 +7,7 @@ export default function Footer() {
   const socialLinks = [
     { icon: Github, href: 'https://github.com/aqsarayyan', label: 'GitHub' },
     { icon: Linkedin, href: '#https://www.linkedin.com/in/muhammadaqsarayyan/', label: 'LinkedIn' },
-    { icon: Tiktok, href: '#https://www.tiktok.com/@aqsasasos', label: 'Tiktok' },
+   // { icon: Youtube, href: '#', label: 'YouTube' },
     { icon: Instagram, href: 'https://www.instagram.com/aqsa_rayyan/', label: 'Instagram' },
   ];
 
