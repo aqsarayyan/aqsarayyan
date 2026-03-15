@@ -104,10 +104,10 @@ export default function HeroSection() {
               className="flex items-center gap-6 justify-center md:justify-start"
             >
               {[
-                { icon: Github, href: '#', label: 'GitHub' },
-                { icon: Linkedin, href: '#', label: 'LinkedIn' },
-                { icon: Youtube, href: '#', label: 'YouTube' },
-                { icon: Instagram, href: '#', label: 'Instagram' },
+                { icon: Github, href: 'https://github.com/aqsarayyan', label: 'GitHub' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/in/muhammadaqsarayyan/', label: 'LinkedIn' },
+                // { icon: Youtube, href: '#', label: 'YouTube' },
+                { icon: Instagram, href: 'https://www.instagram.com/aqsa_rayyan/', label: 'Instagram' },
               ].map((social) => (
                 <motion.a
                   key={social.label}
