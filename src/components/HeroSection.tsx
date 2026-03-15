@@ -98,31 +98,19 @@ export default function HeroSection() {
               </Button>
             </motion.div>
 
-            {/* SOCIAL ICONS */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
-              className="flex items-center gap-6"
-            >
-              {[
-                { icon: Github, href: '#', label: 'GitHub' },
-                { icon: Linkedin, href: '#', label: 'LinkedIn' },
-                { icon: Youtube, href: '#', label: 'YouTube' },
-                { icon: Instagram, href: '#', label: 'Instagram' },
-              ].map((social) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  className="p-3 rounded-full glass hover:shadow-glow transition-all duration-300"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  aria-label={social.label}
-                >
-                  <social.icon className="h-5 w-5 text-foreground" />
-                </motion.a>
-              ))}
-            </motion.div>
+            {/* PHOTO LEFT */}
+<motion.div
+  initial={{ opacity: 0, x: -40 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.8 }}
+  className="flex justify-center"
+>
+  <img
+    src="/profile.jpg"
+    alt="Profile"
+    className="w-72 h-72 object-cover rounded-full shadow-glow border-4 border-primary"
+  />
+</motion.div>
           </div>
         </div>
       </div>
