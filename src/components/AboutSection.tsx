@@ -19,7 +19,10 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="relative py-24 overflow-hidden">
+    <section
+      id="about"
+      className="relative py-24 overflow-hidden"
+    >
 
       {/* Animated Navy Gradient Background */}
       <motion.div
@@ -50,33 +53,33 @@ export default function AboutSection() {
 
         <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
 
+          {/* Profile & Skills Floating */}
           <motion.div
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
             className="relative flex justify-center"
           >
-            <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 5, repeat: Infinity }}
-              className="relative"
-            >
-              <div className="absolute inset-0 rounded-full blur-3xl bg-blue-900/30 opacity-30" />
+
+            <div className="relative">
+              <div className="absolute inset-0 rounded-full blur-3xl bg-white/10 opacity-20" />
 
               <img
                 src="/profile.jpg"
                 alt="profile"
-                className="relative w-72 h-72 rounded-full object-cover border-4 border-blue-400 shadow-2xl"
+                className="relative w-72 h-72 rounded-full object-cover border border-white/20 shadow-lg"
               />
-            </motion.div>
+            </div>
 
+            {/* Skill badges */}
             <div className="absolute -left-8 top-10 flex flex-col gap-3">
               {skills.slice(0, 2).map((skill) => (
                 <motion.span
                   key={skill}
                   whileHover={{ scale: 1.1 }}
-                  className="px-3 py-1 text-sm rounded-full backdrop-blur-md bg-blue-900/20 border border-blue-400/30 shadow text-white"
+                  className="px-3 py-1 text-sm rounded-full bg-white/10 backdrop-blur-lg border border-white/20 shadow text-white"
                 >
                   {skill}
                 </motion.span>
@@ -88,7 +91,7 @@ export default function AboutSection() {
                 <motion.span
                   key={skill}
                   whileHover={{ scale: 1.1 }}
-                  className="px-3 py-1 text-sm rounded-full backdrop-blur-md bg-blue-900/20 border border-blue-400/30 shadow text-white"
+                  className="px-3 py-1 text-sm rounded-full bg-white/10 backdrop-blur-lg border border-white/20 shadow text-white"
                 >
                   {skill}
                 </motion.span>
@@ -97,10 +100,10 @@ export default function AboutSection() {
 
           </motion.div>
 
+          {/* About Text & Stats */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
             className="space-y-6"
           >
@@ -126,12 +129,14 @@ export default function AboutSection() {
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   initial={{ opacity: 0, y: 25 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -8, scale: 1.03 }}
-                  className="p-6 rounded-2xl backdrop-blur-md bg-blue-900/20 border border-blue-400/30 shadow-sm hover:shadow-xl transition text-center text-white"
+                  className="p-6 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-lg hover:shadow-xl transition-all text-center text-white"
                 >
                   <stat.icon className="h-7 w-7 text-blue-300 mx-auto mb-3" />
                   <p className="font-display text-3xl font-bold">
