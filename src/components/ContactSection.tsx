@@ -6,32 +6,43 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
-import emailjs from '@emailjs/browser';
-
-// ====== SETUP EMAILJS ======
-// 1. Go to https://www.emailjs.com/ and create a free account
-// 2. Create an Email Service and a Template
-// 3. Replace the placeholders below
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
-// ============================
+import { supabase } from '@/integrations/supabase/client';
 
 const contactSchema = z.object({
-  name: z.string().trim().min(1, 'Name is required').max(100),
-  email: z.string().trim().email('Invalid email').max(255),
-  subject: z.string().trim().min(1, 'Subject is required').max(200),
-  message: z.string().trim().min(1, 'Message is required').max(2000),
+  name: z.string().trim().min(1, 'Nama harus diisi').max(100, 'Nama terlalu panjang'),
+  email: z.string().trim().email('Email tidak valid').max(255, 'Email terlalu panjang'),
+  subject: z.string().trim().min(1, 'Subjek harus diisi').max(200, 'Subjek terlalu panjang'),
+  message: z.string().trim().min(1, 'Pesan harus diisi').max(2000, 'Pesan terlalu panjang'),
 });
 
 const contactInfo = [
-  { icon: Mail, label: 'Email', value: 'aqsarayyan@gmail.com', href: 'mailto:aqsarayyan@gmail.com' },
-  { icon: Phone, label: 'Phone', value: '+62 813 7747 0090', href: 'tel:+6281377470090' },
-  { icon: MapPin, label: 'Location', value: 'Banda Aceh, Indonesia', href: '#' },
+  {
+    icon: Mail,
+    label: 'Email',
+    value: 'aqsarayyan@gmail.com',
+    href: 'mailto:aqsarayyan@gmail.com',
+  },
+  {
+    icon: Phone,
+    label: 'Telepon',
+    value: '+62 813 7747 0090',
+    href: 'tel:+6281377470090',
+  },
+  {
+    icon: MapPin,
+    label: 'Lokasi',
+    value: 'Banda Aceh, Indonesia',
+    href: '#',
+  },
 ];
 
 export default function ContactSection() {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -39,7 +50,9 @@ export default function ContactSection() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: '' }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -50,7 +63,9 @@ export default function ContactSection() {
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
       result.error.errors.forEach((err) => {
-        if (err.path[0]) fieldErrors[err.path[0] as string] = err.message;
+        if (err.path[0]) {
+          fieldErrors[err.path[0] as string] = err.message;
+        }
       });
       setErrors(fieldErrors);
       return;
@@ -59,24 +74,23 @@ export default function ContactSection() {
     setIsSubmitting(true);
 
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        formData,
-        EMAILJS_PUBLIC_KEY
-      );
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData,
+      });
+
+      if (error) throw error;
 
       toast({
-        title: 'Message Sent! ✨',
-        description: 'Thank you for contacting me. I will reply as soon as possible.',
+        title: 'Pesan Terkirim! ✨',
+        description: 'Terima kasih telah menghubungi saya. Saya akan membalas secepatnya.',
       });
 
       setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error sending email:', error);
       toast({
-        title: 'Failed to Send',
-        description: 'An error occurred. Please try again or contact me directly via email.',
+        title: 'Gagal Mengirim',
+        description: 'Terjadi kesalahan. Silakan coba lagi atau hubungi langsung via email.',
         variant: 'destructive',
       });
     } finally {
@@ -85,7 +99,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32 bg-navy-900">
+    <section id="contact" className="py-20 md:py-32">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -94,8 +108,10 @@ export default function ContactSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-primary font-medium mb-2 block">Contact</span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">Get In Touch</h2>
+          <span className="text-primary font-medium mb-2 block">Kontak</span>
+          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
+            Hubungi Saya
+          </h2>
           <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
         </motion.div>
 
@@ -109,10 +125,13 @@ export default function ContactSection() {
             className="space-y-8"
           >
             <div>
-              <h3 className="font-display text-2xl font-bold mb-4">Let's Collaborate!</h3>
+              <h3 className="font-display text-2xl font-bold mb-4">
+                Mari Berkolaborasi!
+              </h3>
               <p className="text-muted-foreground leading-relaxed">
-                I am a student developer interested in programming, web development, and technology.
-                Feel free to contact me about projects, collaborations, or questions.
+                Saya adalah seorang student developer yang tertarik pada programming,
+                web development, dan teknologi. Jika Anda ingin berdiskusi tentang
+                project, kolaborasi, atau teknologi, jangan ragu untuk menghubungi saya.
               </p>
             </div>
 
@@ -149,20 +168,25 @@ export default function ContactSection() {
             <form onSubmit={handleSubmit} className="space-y-6 p-6 glass rounded-2xl shadow-card">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium">Name</label>
+                  <label htmlFor="name" className="text-sm font-medium">
+                    Nama
+                  </label>
                   <Input
                     id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Your name"
+                    placeholder="Nama Anda"
                     className={errors.name ? 'border-destructive' : ''}
                   />
-                  {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
+                  {errors.name && (
+                    <p className="text-xs text-destructive">{errors.name}</p>
+                  )}
                 </div>
-
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium">Email</label>
+                  <label htmlFor="email" className="text-sm font-medium">
+                    Email
+                  </label>
                   <Input
                     id="email"
                     name="email"
@@ -172,35 +196,45 @@ export default function ContactSection() {
                     placeholder="email@example.com"
                     className={errors.email ? 'border-destructive' : ''}
                   />
-                  {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
+                  {errors.email && (
+                    <p className="text-xs text-destructive">{errors.email}</p>
+                  )}
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium">Subject</label>
+                <label htmlFor="subject" className="text-sm font-medium">
+                  Subjek
+                </label>
                 <Input
                   id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  placeholder="Message subject"
+                  placeholder="Subjek pesan"
                   className={errors.subject ? 'border-destructive' : ''}
                 />
-                {errors.subject && <p className="text-xs text-destructive">{errors.subject}</p>}
+                {errors.subject && (
+                  <p className="text-xs text-destructive">{errors.subject}</p>
+                )}
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium">Message</label>
+                <label htmlFor="message" className="text-sm font-medium">
+                  Pesan
+                </label>
                 <Textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Write your message..."
+                  placeholder="Tuliskan pesan Anda..."
                   rows={5}
                   className={errors.message ? 'border-destructive' : ''}
                 />
-                {errors.message && <p className="text-xs text-destructive">{errors.message}</p>}
+                {errors.message && (
+                  <p className="text-xs text-destructive">{errors.message}</p>
+                )}
               </div>
 
               <Button
@@ -212,12 +246,12 @@ export default function ContactSection() {
                 {isSubmitting ? (
                   <>
                     <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Sending...
+                    Mengirim...
                   </>
                 ) : (
                   <>
                     <Send className="h-4 w-4 mr-2" />
-                    Send Message
+                    Kirim Pesan
                   </>
                 )}
               </Button>
