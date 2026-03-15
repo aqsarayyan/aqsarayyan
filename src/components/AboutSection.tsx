@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Code2, Video, Coffee, Rocket } from 'lucide-react';
 
 export default function AboutSection() {
+
   const stats = [
     { icon: Code2, value: '15+', label: 'Projects Built' },
     { icon: Video, value: '20+', label: 'Videos Edited' },
@@ -9,15 +10,26 @@ export default function AboutSection() {
     { icon: Rocket, value: '3+', label: 'Years Learning' },
   ];
 
-  const skills = ['React', 'JavaScript', 'Python', 'Tailwind', 'Git'];
+  const skills = [
+    'React',
+    'JavaScript',
+    'Python',
+    'Tailwind',
+    'Git',
+  ];
 
   return (
-    <section id="about" className="py-24 bg-gradient-to-b from-background to-muted/40">
-      <div className="container mx-auto px-4">
+    <section
+      id="about"
+      className="relative py-24 overflow-hidden bg-gradient-to-b from-background via-muted/30 to-background"
+    >
 
-        {/* TITLE */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/20 blur-[120px] rounded-full opacity-40" />
+
+      <div className="container mx-auto px-4 relative z-10">
+
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
@@ -31,57 +43,61 @@ export default function AboutSection() {
             Get to Know Me
           </h2>
 
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
+          <div className="w-24 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-purple-500" />
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
 
-          {/* PROFILE CARD */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="relative"
+            className="relative flex justify-center"
           >
 
-            {/* glow background */}
-            <div className="absolute inset-0 blur-3xl opacity-30 bg-primary rounded-full" />
+            <motion.div
+              animate={{ y: [0, -12, 0] }}
+              transition={{ duration: 5, repeat: Infinity }}
+              className="relative"
+            >
 
-            <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl border">
+              <div className="absolute inset-0 rounded-full blur-3xl bg-primary/40 opacity-40" />
+
               <img
                 src="/profile.jpg"
-                alt="Profile"
-                className="w-full h-full object-cover"
+                alt="profile"
+                className="relative w-72 h-72 rounded-full object-cover border-4 border-primary shadow-2xl"
               />
-            </div>
 
-            {/* floating skills */}
-            <div className="absolute -top-6 -left-6 flex flex-col gap-3">
-              {skills.slice(0,2).map((skill) => (
-                <span
+            </motion.div>
+
+            <div className="absolute -left-8 top-10 flex flex-col gap-3">
+              {skills.slice(0, 2).map((skill) => (
+                <motion.span
                   key={skill}
-                  className="px-3 py-1 text-sm rounded-full glass shadow-md"
+                  whileHover={{ scale: 1.1 }}
+                  className="px-3 py-1 text-sm rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow"
                 >
                   {skill}
-                </span>
+                </motion.span>
               ))}
             </div>
 
-            <div className="absolute -bottom-6 -right-6 flex flex-col gap-3">
+            <div className="absolute -right-8 bottom-10 flex flex-col gap-3">
               {skills.slice(2).map((skill) => (
-                <span
+                <motion.span
                   key={skill}
-                  className="px-3 py-1 text-sm rounded-full glass shadow-md"
+                  whileHover={{ scale: 1.1 }}
+                  className="px-3 py-1 text-sm rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow"
                 >
                   {skill}
-                </span>
+                </motion.span>
               ))}
             </div>
 
           </motion.div>
 
-          {/* TEXT */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -95,19 +111,18 @@ export default function AboutSection() {
             </h3>
 
             <p className="text-muted-foreground leading-relaxed">
-              Saya adalah siswa di MAN 1 Banda Aceh yang memiliki minat besar
-              dalam dunia teknologi dan pemrograman. Saya mulai belajar coding
-              pada tahun 2022 dan sejak itu terus mengembangkan berbagai proyek
-              untuk meningkatkan kemampuan saya.
+              Saya adalah seorang siswa di MAN 1 Banda Aceh yang memiliki minat besar
+              dalam dunia teknologi dan pemrograman. Saya mulai belajar coding pada
+              tahun 2022 dan terus mengembangkan berbagai proyek untuk meningkatkan
+              keterampilan saya.
             </p>
 
             <p className="text-muted-foreground leading-relaxed">
               Selain coding, saya juga tertarik pada fotografi, video editing,
-              dan English debate. Saya percaya teknologi dan kreativitas dapat
-              berjalan bersama untuk menciptakan solusi yang inovatif.
+              dan English debate. Saya percaya kreativitas dan teknologi dapat
+              berjalan bersama untuk menciptakan solusi inovatif.
             </p>
 
-            {/* STATS */}
             <div className="grid grid-cols-2 gap-5 pt-6">
 
               {stats.map((stat, index) => (
@@ -117,8 +132,8 @@ export default function AboutSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  whileHover={{ y: -6 }}
-                  className="p-6 rounded-2xl border bg-background/70 backdrop-blur-md shadow-sm hover:shadow-xl transition text-center"
+                  whileHover={{ y: -8, scale: 1.03 }}
+                  className="p-6 rounded-2xl backdrop-blur-md bg-background/70 border shadow-sm hover:shadow-xl transition text-center"
                 >
 
                   <stat.icon className="h-7 w-7 text-primary mx-auto mb-3" />
