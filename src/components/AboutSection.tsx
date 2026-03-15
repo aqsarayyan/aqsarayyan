@@ -19,12 +19,14 @@ export default function AboutSection() {
   ];
 
   return (
-    <section
-      id="about"
-      className="relative py-24 overflow-hidden bg-gradient-to-b from-background via-muted/30 to-background"
-    >
+    <section id="about" className="relative py-24 overflow-hidden">
 
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/20 blur-[120px] rounded-full opacity-40" />
+      {/* Animated Gradient Background */}
+      <motion.div
+        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 bg-[length:200%_200%] blur-3xl opacity-40"
+      />
 
       <div className="container mx-auto px-4 relative z-10">
 
@@ -35,15 +37,15 @@ export default function AboutSection() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <span className="text-primary font-semibold tracking-wide block mb-2">
+          <span className="text-white font-semibold tracking-wide block mb-2">
             About Me
           </span>
 
-          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
+          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4 text-white">
             Get to Know Me
           </h2>
 
-          <div className="w-24 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-purple-500" />
+          <div className="w-24 h-1 mx-auto rounded-full bg-gradient-to-r from-white to-purple-300" />
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
@@ -55,21 +57,18 @@ export default function AboutSection() {
             viewport={{ once: true }}
             className="relative flex justify-center"
           >
-
             <motion.div
               animate={{ y: [0, -12, 0] }}
               transition={{ duration: 5, repeat: Infinity }}
               className="relative"
             >
-
-              <div className="absolute inset-0 rounded-full blur-3xl bg-primary/40 opacity-40" />
+              <div className="absolute inset-0 rounded-full blur-3xl bg-white/20 opacity-20" />
 
               <img
                 src="/profile.jpg"
                 alt="profile"
-                className="relative w-72 h-72 rounded-full object-cover border-4 border-primary shadow-2xl"
+                className="relative w-72 h-72 rounded-full object-cover border-4 border-white shadow-2xl"
               />
-
             </motion.div>
 
             <div className="absolute -left-8 top-10 flex flex-col gap-3">
@@ -77,7 +76,7 @@ export default function AboutSection() {
                 <motion.span
                   key={skill}
                   whileHover={{ scale: 1.1 }}
-                  className="px-3 py-1 text-sm rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow"
+                  className="px-3 py-1 text-sm rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow text-white"
                 >
                   {skill}
                 </motion.span>
@@ -89,7 +88,7 @@ export default function AboutSection() {
                 <motion.span
                   key={skill}
                   whileHover={{ scale: 1.1 }}
-                  className="px-3 py-1 text-sm rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow"
+                  className="px-3 py-1 text-sm rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow text-white"
                 >
                   {skill}
                 </motion.span>
@@ -105,19 +104,18 @@ export default function AboutSection() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-
-            <h3 className="font-display text-2xl md:text-3xl font-bold">
+            <h3 className="font-display text-2xl md:text-3xl font-bold text-white">
               Student Developer from Banda Aceh
             </h3>
 
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-white/80 leading-relaxed">
               I am a student at MAN 1 Banda Aceh who has a strong interest
               in technology and programming. I started learning coding in
               2022 and continue to develop various projects to improve
               my skills.
             </p>
 
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-white/80 leading-relaxed">
               Besides coding, I am also interested in photography,
               video editing, and English debate. I believe creativity
               and technology can work together to create innovative solutions.
@@ -133,19 +131,15 @@ export default function AboutSection() {
                   transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -8, scale: 1.03 }}
-                  className="p-6 rounded-2xl backdrop-blur-md bg-background/70 border shadow-sm hover:shadow-xl transition text-center"
+                  className="p-6 rounded-2xl backdrop-blur-md bg-white/10 border border-white/20 shadow-sm hover:shadow-xl transition text-center text-white"
                 >
-
-                  <stat.icon className="h-7 w-7 text-primary mx-auto mb-3" />
-
+                  <stat.icon className="h-7 w-7 text-white mx-auto mb-3" />
                   <p className="font-display text-3xl font-bold">
                     {stat.value}
                   </p>
-
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-white/80">
                     {stat.label}
                   </p>
-
                 </motion.div>
               ))}
 
