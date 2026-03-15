@@ -111,16 +111,16 @@ export default function AboutSection() {
             </h3>
 
             <p className="text-muted-foreground leading-relaxed">
-              Saya adalah seorang siswa di MAN 1 Banda Aceh yang memiliki minat besar
-              dalam dunia teknologi dan pemrograman. Saya mulai belajar coding pada
-              tahun 2022 dan terus mengembangkan berbagai proyek untuk meningkatkan
-              keterampilan saya.
+              I am a student at MAN 1 Banda Aceh who has a strong interest
+              in technology and programming. I started learning coding in
+              2022 and continue to develop various projects to improve
+              my skills.
             </p>
 
             <p className="text-muted-foreground leading-relaxed">
-              Selain coding, saya juga tertarik pada fotografi, video editing,
-              dan English debate. Saya percaya kreativitas dan teknologi dapat
-              berjalan bersama untuk menciptakan solusi inovatif.
+              Besides coding, I am also interested in photography,
+              video editing, and English debate. I believe creativity
+              and technology can work together to create innovative solutions.
             </p>
 
             <div className="grid grid-cols-2 gap-5 pt-6">
