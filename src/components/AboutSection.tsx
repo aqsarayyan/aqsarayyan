@@ -24,11 +24,11 @@ export default function AboutSection() {
       className="relative py-24 overflow-hidden"
     >
 
-      {/* Animated Navy Gradient Background */}
+      {/* Smooth Animated Navy Gradient */}
       <motion.div
-        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 bg-[length:200%_200%] blur-3xl opacity-50"
+        animate={{ backgroundPosition: ["0% 50%", "200% 50%"] }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900 via-blue-800 to-blue-950 bg-[length:300%_300%] blur-3xl opacity-60"
       />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -133,7 +133,6 @@ export default function AboutSection() {
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   initial={{ opacity: 0, y: 25 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -8, scale: 1.03 }}
                   className="p-6 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-lg hover:shadow-xl transition-all text-center text-white"
