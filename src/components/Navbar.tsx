@@ -46,6 +46,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
+
           <motion.a
             href="#home"
             onClick={(e) => {
@@ -55,11 +56,12 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
             className="font-display text-xl md:text-2xl font-bold text-gradient cursor-pointer"
             whileHover={{ scale: 1.05 }}
           >
-            Aqsa Rayyan's Portfolio
+            Aqsa Rayyan
           </motion.a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
+
             {navItems.map((item) => (
               <motion.a
                 key={item.label}
@@ -74,6 +76,14 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                 {item.label}
               </motion.a>
             ))}
+
+            {/* Google Translate */}
+            <div
+              id="google_translate_element"
+              className="scale-75 origin-right"
+            ></div>
+
+            {/* Theme Toggle */}
             <Button
               variant="ghost"
               size="icon"
@@ -102,6 +112,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                 )}
               </AnimatePresence>
             </Button>
+
           </div>
 
           {/* Mobile Menu Button */}
@@ -114,6 +125,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
             >
               {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
+
             <Button
               variant="ghost"
               size="icon"
@@ -122,6 +134,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
               {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
+
         </div>
       </div>
 
@@ -135,6 +148,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
             className="md:hidden glass-strong border-t border-border"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
+
               {navItems.map((item) => (
                 <a
                   key={item.label}
@@ -148,10 +162,15 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                   {item.label}
                 </a>
               ))}
+
+              {/* Mobile Translator */}
+              <div id="google_translate_element"></div>
+
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+
     </motion.nav>
   );
 }
