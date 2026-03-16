@@ -33,10 +33,11 @@ export default function AboutSection() {
 
       <div className="container mx-auto px-4 relative z-10">
 
+        {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="text-center mb-20"
         >
@@ -53,17 +54,22 @@ export default function AboutSection() {
 
         <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
 
-          {/* Profile & Skills Floating */}
+          {/* Profile */}
           <motion.div
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
             className="relative flex justify-center"
           >
 
-            <div className="relative">
+            {/* Floating container */}
+            <motion.div
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="relative"
+            >
+
               <div className="absolute inset-0 rounded-full blur-3xl bg-white/10 opacity-20" />
 
               <img
@@ -71,7 +77,8 @@ export default function AboutSection() {
                 alt="profile"
                 className="relative w-72 h-72 rounded-full object-cover border border-white/20 shadow-lg"
               />
-            </div>
+
+            </motion.div>
 
             {/* Skill badges */}
             <div className="absolute -left-8 top-10 flex flex-col gap-3">
@@ -100,10 +107,11 @@ export default function AboutSection() {
 
           </motion.div>
 
-          {/* About Text & Stats */}
+          {/* About Text */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
             className="space-y-6"
           >
@@ -124,15 +132,15 @@ export default function AboutSection() {
               and technology can work together to create innovative solutions.
             </p>
 
+            {/* Stats */}
             <div className="grid grid-cols-2 gap-5 pt-6">
 
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   initial={{ opacity: 0, y: 25 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.15, duration: 0.6 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -8, scale: 1.03 }}
                   className="p-6 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-lg hover:shadow-xl transition-all text-center text-white"
