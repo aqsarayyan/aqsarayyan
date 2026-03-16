@@ -8,6 +8,7 @@ import CertificatesSection from '@/components/CertificatesSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import AccordionSection from "@/components/AccordionSection";
+import ProjectsCarousel from "@/components/ProjectsCarousel";
 
 const Index = () => {
   const [isDark, setIsDark] = useState(() => {
@@ -34,6 +35,7 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar isDark={isDark} toggleTheme={toggleTheme} />
       <HeroSection />
+      <ProjectsCarousel />
       <AboutSection />
       <SkillsSection />
       <ProjectsSection />
