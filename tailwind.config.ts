@@ -100,7 +100,3 @@ export default {
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
-
-fontFamily: {
-  sans: ['Inter', 'sans-serif']
-}
