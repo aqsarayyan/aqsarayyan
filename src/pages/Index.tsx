@@ -7,6 +7,7 @@ import ProjectsSection from '@/components/ProjectsSection';
 import CertificatesSection from '@/components/CertificatesSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import AccordionSection from "@/components/AccordionSection";
 
 const Index = () => {
   const [isDark, setIsDark] = useState(() => {
@@ -37,6 +38,7 @@ const Index = () => {
       <SkillsSection />
       <ProjectsSection />
       <CertificatesSection />
+      <AccordionSection />
       <ContactSection />
       <Footer />
     </div>
