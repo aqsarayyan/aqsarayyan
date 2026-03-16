@@ -24,4 +24,12 @@ const App = () => (
   </QueryClientProvider>
 );
 
+<div className="fixed inset-0 -z-10 bg-[#0b0f19]" />
+
+<div className="fixed inset-0 -z-10 opacity-40 blur-3xl
+bg-gradient-to-br
+from-blue-900
+via-indigo-900
+to-slate-900" />
+
 export default App;
