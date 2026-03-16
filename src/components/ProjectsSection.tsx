@@ -59,59 +59,72 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="relative py-20 md:py-32 overflow-hidden">
 
-      {/* Animated Navy Gradient Background */}
+      {/* Animated Navy Gradient */}
       <motion.div
-        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 bg-[length:200%_200%] blur-3xl opacity-50"
+        animate={{ backgroundPosition: ["0% 50%", "200% 50%"] }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900 via-blue-800 to-blue-950 bg-[length:300%_300%] blur-3xl opacity-60"
       />
 
       <div className="container mx-auto px-4 relative z-10">
 
+        {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
           <span className="text-blue-300 font-medium mb-2 block">Portfolio</span>
+
           <h2 className="font-display text-3xl md:text-5xl font-bold mb-4 text-white">
             Projects &amp; Works
           </h2>
+
           <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-blue-300 mx-auto rounded-full" />
         </motion.div>
 
+        {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+
           {projects.map((project, index) => (
+
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ delay: index * 0.15, duration: 0.6 }}
             >
-              <div className={`h-full p-6 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2`}>
-                
-                {/* Project Icon / Image */}
+
+              {/* Floating Card */}
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                whileHover={{ y: -10, scale: 1.03 }}
+                className="h-full p-6 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+
+                {/* Icon */}
                 <div className={`aspect-video rounded-xl mb-4 flex items-center justify-center bg-gradient-to-br ${project.color}`}>
                   <span className="text-6xl">{project.image}</span>
                 </div>
 
-                {/* Project Info */}
                 <div className="space-y-3 text-white">
 
                   <div className="flex items-center gap-2">
+
                     {project.isContent && (
                       <span className="px-2 py-0.5 text-xs rounded-full bg-blue-300/20 text-blue-300 font-medium">
                         Content
                       </span>
                     )}
-                    <h3 className="font-display text-lg font-bold group-hover:text-blue-300 transition-colors">
+
+                    <h3 className="font-display text-lg font-bold">
                       {project.title}
                     </h3>
+
                   </div>
 
                   <p className="text-sm text-blue-200/80 line-clamp-2">
@@ -131,6 +144,7 @@ export default function ProjectsSection() {
 
                   {/* Buttons */}
                   <div className="flex gap-2 pt-2">
+
                     {project.github && (
                       <Button variant="outline" size="sm" className="rounded-full" asChild>
                         <a href={project.github}>
@@ -139,6 +153,7 @@ export default function ProjectsSection() {
                         </a>
                       </Button>
                     )}
+
                     {project.demo && (
                       <Button size="sm" className="rounded-full" asChild>
                         <a href={project.demo}>
@@ -147,6 +162,7 @@ export default function ProjectsSection() {
                         </a>
                       </Button>
                     )}
+
                     {project.youtube && (
                       <Button size="sm" className="rounded-full" asChild>
                         <a href={project.youtube}>
@@ -155,12 +171,17 @@ export default function ProjectsSection() {
                         </a>
                       </Button>
                     )}
+
                   </div>
 
                 </div>
-              </div>
+
+              </motion.div>
+
             </motion.div>
+
           ))}
+
         </div>
 
       </div>
