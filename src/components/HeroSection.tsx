@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Github, Linkedin, Youtube, Instagram } from 'lucide-react';
+import { ArrowDown, Github, Linkedin, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ThreeScene from './ThreeScene';
 
@@ -12,112 +12,144 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-blue-900 via-blue-800 to-black">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+
+      {/* Optional 3D */}
       <ThreeScene />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
+      {/* Subtle ambient light */}
+      <motion.div
+        animate={{ opacity: [0.04, 0.08, 0.04] }}
+        transition={{ duration: 6, repeat: Infinity }}
+        className="absolute w-[600px] h-[600px] bg-white rounded-full blur-[140px]"
+      />
 
-          {/* FOTO PROFIL */}
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+
+          {/* PROFILE */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             className="flex-shrink-0"
           >
             <img
               src="/profile.jpg"
               alt="Profile"
-              className="w-52 h-52 md:w-72 md:h-72 object-cover rounded-full border-4 border-blue-400 shadow-lg"
+              className="
+                w-48 h-48 md:w-64 md:h-64
+                object-cover rounded-full
+                border border-white/10
+              "
             />
           </motion.div>
 
-          {/* TEXT CONTENT */}
+          {/* TEXT */}
           <div className="text-center md:text-left flex-1">
 
+            {/* Small label */}
             <motion.span 
-              className="inline-block px-4 py-2 rounded-full glass text-sm font-medium text-blue-400 mb-6"
-              initial={{ opacity: 0, scale: 0.8 }}
+              className="inline-block px-4 py-1.5 rounded-full text-xs tracking-widest text-white/50 border border-white/10 mb-6"
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
             >
-              Welcome to My Portfolio
+              PORTFOLIO
             </motion.span>
 
+            {/* Title */}
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white tracking-tight"
             >
               Fulltime Student
               <br />
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-                &amp; Part-Time Coder
+              <span className="text-white/70">
+                & Part-Time Coder
               </span>
             </motion.h1>
 
+            {/* Description */}
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-lg md:text-xl text-gray-300 mb-8 max-w-xl"
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="text-base md:text-lg text-white/60 mb-8 max-w-xl"
             >
-              I've been coding since 2022, and I have a passion for creating innovation
-              and learning new things. I am currently a student at MAN 1 Banda Aceh.
+              I've been coding since 2022, focused on building projects,
+              improving skills, and exploring creative technology.
             </motion.p>
 
+            {/* Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
               className="flex flex-col sm:flex-row items-center md:items-start gap-4 mb-10"
             >
               <Button 
                 size="lg" 
-                className="rounded-full px-8 bg-blue-500 hover:bg-blue-600 text-white"
+                className="
+                  rounded-full px-8
+                  bg-white text-black
+                  hover:opacity-80
+                  transition-all
+                "
                 onClick={() => {
                   const element = document.querySelector('#projects');
                   if (element) element.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
-                Lihat Projects
+                View Projects
               </Button>
 
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="rounded-full px-8 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-black"
+                className="
+                  rounded-full px-8
+                  border-white/20 text-white
+                  hover:bg-white hover:text-black
+                  transition-all
+                "
                 onClick={() => {
                   const element = document.querySelector('#contact');
                   if (element) element.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
-                Hubungi Saya
+                Contact Me
               </Button>
             </motion.div>
 
+            {/* Socials */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
-              className="flex items-center gap-6 justify-center md:justify-start"
+              transition={{ duration: 0.6, delay: 0.9 }}
+              className="flex items-center gap-5 justify-center md:justify-start"
             >
               {[
-                { icon: Github, href: 'https://github.com/aqsarayyan', label: 'GitHub' },
-                { icon: Linkedin, href: 'https://www.linkedin.com/in/muhammadaqsarayyan/', label: 'LinkedIn' },
-                // { icon: Youtube, href: '#', label: 'YouTube' },
-                { icon: Instagram, href: 'https://www.instagram.com/aqsa_rayyan/', label: 'Instagram' },
-              ].map((social) => (
+                { icon: Github, href: 'https://github.com/aqsarayyan' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/in/muhammadaqsarayyan/' },
+                { icon: Instagram, href: 'https://www.instagram.com/aqsa_rayyan/' },
+              ].map((social, i) => (
                 <motion.a
-                  key={social.label}
+                  key={i}
                   href={social.href}
-                  className="p-3 rounded-full bg-blue-500/20 hover:bg-blue-500/40 transition-all duration-300"
-                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="
+                    p-3 rounded-full
+                    border border-white/10
+                    text-white/70
+                    hover:text-white
+                    hover:border-white/30
+                  "
+                  whileHover={{ scale: 1.08, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  aria-label={social.label}
                 >
-                  <social.icon className="h-5 w-5 text-white" />
+                  <social.icon className="h-5 w-5" />
                 </motion.a>
               ))}
             </motion.div>
@@ -126,14 +158,22 @@ export default function HeroSection() {
         </div>
       </div>
 
+      {/* Scroll button */}
       <motion.button
         onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 p-3 rounded-full bg-blue-500/20 hover:bg-blue-500/40 cursor-pointer"
+        className="
+          absolute bottom-8 left-1/2 -translate-x-1/2
+          p-3 rounded-full
+          border border-white/10
+          text-white/60
+          hover:text-white
+          hover:border-white/30
+        "
         whileHover={{ scale: 1.1 }}
-        aria-label="Scroll to About"
       >
-        <ArrowDown className="h-5 w-5 text-blue-400" />
+        <ArrowDown className="h-5 w-5" />
       </motion.button>
+
     </section>
   );
 }

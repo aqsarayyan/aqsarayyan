@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2500); // loader duration
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -27,24 +27,24 @@ function App() {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
+    <div className="bg-black text-white min-h-screen selection:bg-white selection:text-black">
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
 
-        <Toaster />
-        <Sonner />
+          {/* Toasts styled to match theme */}
+          <Toaster />
+          <Sonner theme="dark" />
 
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
 
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-
-      </TooltipProvider>
-    </QueryClientProvider>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </div>
   );
 }
 

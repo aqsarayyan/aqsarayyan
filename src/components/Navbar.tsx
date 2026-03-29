@@ -41,25 +41,28 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass-strong shadow-card' : 'bg-transparent'
+        isScrolled
+          ? 'bg-black/80 backdrop-blur border-b border-white/10'
+          : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
 
+          {/* LOGO */}
           <motion.a
             href="#home"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection('#home');
             }}
-            className="font-display text-xl md:text-2xl font-bold text-gradient cursor-pointer"
+            className="text-xl md:text-2xl font-bold text-white cursor-pointer"
             whileHover={{ scale: 1.05 }}
           >
             Aqsa Rayyan
           </motion.a>
 
-          {/* Desktop Navigation */}
+          {/* DESKTOP NAV */}
           <div className="hidden md:flex items-center gap-8">
 
             {navItems.map((item) => (
@@ -70,7 +73,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                   e.preventDefault();
                   scrollToSection(item.href);
                 }}
-                className="text-muted-foreground hover:text-foreground transition-colors font-medium cursor-pointer"
+                className="text-gray-400 hover:text-white transition-colors font-medium cursor-pointer"
                 whileHover={{ y: -2 }}
               >
                 {item.label}
@@ -78,17 +81,14 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
             ))}
 
             {/* Google Translate */}
-            <div
-              id="google_translate_element"
-              className="scale-75 origin-right"
-            ></div>
+            <div className="scale-75 origin-right" id="google_translate_element"></div>
 
-            {/* Theme Toggle */}
+            {/* THEME TOGGLE */}
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full"
+              className="rounded-full text-white hover:bg-white/10"
             >
               <AnimatePresence mode="wait">
                 {isDark ? (
@@ -115,13 +115,13 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
 
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* MOBILE */}
           <div className="flex items-center gap-2 md:hidden">
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full"
+              className="rounded-full text-white hover:bg-white/10"
             >
               {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
@@ -130,22 +130,27 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
               variant="ghost"
               size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-white hover:bg-white/10"
             >
-              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isMobileMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </Button>
           </div>
 
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-strong border-t border-border"
+            className="md:hidden bg-black border-t border-white/10"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
 
@@ -157,13 +162,12 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                     e.preventDefault();
                     scrollToSection(item.href);
                   }}
-                  className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+                  className="text-gray-400 hover:text-white transition-colors font-medium py-2"
                 >
                   {item.label}
                 </a>
               ))}
 
-              {/* Mobile Translator */}
               <div id="google_translate_element"></div>
 
             </div>
