@@ -74,7 +74,7 @@ export default function ContactSection() {
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
         body: formData,
       });
 
@@ -99,8 +99,10 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32">
+    <section id="contact" className="py-20 md:py-32 bg-black text-white">
       <div className="container mx-auto px-4">
+
+        {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -108,15 +110,18 @@ export default function ContactSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-primary font-medium mb-2 block">Contact</span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
+          <span className="text-gray-400 font-medium mb-2 block">Contact</span>
+
+          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4 text-white">
             Get In Touch
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+
+          <div className="w-20 h-1 bg-gradient-to-r from-white to-gray-400 mx-auto rounded-full" />
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Info */}
+
+          {/* CONTACT INFO */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -125,10 +130,11 @@ export default function ContactSection() {
             className="space-y-8"
           >
             <div>
-              <h3 className="font-display text-2xl font-bold mb-4">
+              <h3 className="font-display text-2xl font-bold mb-4 text-white">
                 Let's Collaborate!
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+
+              <p className="text-gray-400 leading-relaxed">
                 I am a student developer interested in programming, web development, and technology.
                 If you want to discuss a project, collaboration, or technology, feel free to contact me.
               </p>
@@ -143,103 +149,69 @@ export default function ContactSection() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="flex items-center gap-4 p-4 glass rounded-xl hover:shadow-card-hover transition-all group"
+                  className="flex items-center gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all group"
                 >
-                  <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                    <info.icon className="h-5 w-5 text-primary" />
+                  <div className="p-3 rounded-lg bg-white/10 group-hover:bg-white/20 transition-colors">
+                    <info.icon className="h-5 w-5 text-white" />
                   </div>
+
                   <div>
-                    <p className="text-sm text-muted-foreground">{info.label}</p>
-                    <p className="font-medium">{info.value}</p>
+                    <p className="text-sm text-gray-400">{info.label}</p>
+                    <p className="font-medium text-white">{info.value}</p>
                   </div>
                 </motion.a>
               ))}
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* FORM */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6 p-6 glass rounded-2xl shadow-card">
+            <form className="space-y-6 p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur">
+
               <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium">
-                    Name
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Your Name"
-                    className={errors.name ? 'border-destructive' : ''}
-                  />
-                  {errors.name && (
-                    <p className="text-xs text-destructive">{errors.name}</p>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium">
-                    Email
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="email@example.com"
-                    className={errors.email ? 'border-destructive' : ''}
-                  />
-                  {errors.email && (
-                    <p className="text-xs text-destructive">{errors.email}</p>
-                  )}
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium">
-                  Subject
-                </label>
                 <Input
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
+                  name="name"
+                  value={formData.name}
                   onChange={handleChange}
-                  placeholder="Message Subject"
-                  className={errors.subject ? 'border-destructive' : ''}
+                  placeholder="Your Name"
+                  className="bg-black border-white/10 text-white placeholder:text-gray-500"
                 />
-                {errors.subject && (
-                  <p className="text-xs text-destructive">{errors.subject}</p>
-                )}
+
+                <Input
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="email@example.com"
+                  className="bg-black border-white/10 text-white placeholder:text-gray-500"
+                />
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium">
-                  Message
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Write your message..."
-                  rows={5}
-                  className={errors.message ? 'border-destructive' : ''}
-                />
-                {errors.message && (
-                  <p className="text-xs text-destructive">{errors.message}</p>
-                )}
-              </div>
+              <Input
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                placeholder="Message Subject"
+                className="bg-black border-white/10 text-white placeholder:text-gray-500"
+              />
+
+              <Textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Write your message..."
+                rows={5}
+                className="bg-black border-white/10 text-white placeholder:text-gray-500"
+              />
 
               <Button
                 type="submit"
                 size="lg"
-                className="w-full rounded-full"
+                className="w-full rounded-full bg-white text-black hover:bg-gray-200"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
@@ -254,8 +226,10 @@ export default function ContactSection() {
                   </>
                 )}
               </Button>
+
             </form>
           </motion.div>
+
         </div>
       </div>
     </section>

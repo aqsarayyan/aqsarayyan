@@ -15,14 +15,13 @@ function AnimatedSphere() {
 
   return (
     <Float speed={2} rotationIntensity={1} floatIntensity={2}>
-      <Sphere ref={meshRef} args={[1, 64, 64]} position={[0, 0, 0]}>
+      <Sphere ref={meshRef} args={[1, 64, 64]}>
         <MeshDistortMaterial
-          color="#14b8a6"
-          attach="material"
-          distort={0.4}
+          color="#0ea5e9" // BLUE
+          distort={0.35}
           speed={2}
-          roughness={0.2}
-          metalness={0.8}
+          roughness={0.15}
+          metalness={0.9}
         />
       </Sphere>
     </Float>
@@ -43,9 +42,11 @@ function FloatingTorus() {
     <Float speed={1.5} rotationIntensity={2} floatIntensity={1}>
       <Torus ref={meshRef} args={[0.6, 0.2, 32, 64]} position={[2.5, 1, -1]}>
         <meshStandardMaterial
-          color="#0ea5e9"
-          roughness={0.3}
-          metalness={0.9}
+          color="#38bdf8" // LIGHT BLUE
+          roughness={0.25}
+          metalness={1}
+          emissive="#0ea5e9"
+          emissiveIntensity={0.4}
         />
       </Torus>
     </Float>
@@ -66,9 +67,11 @@ function FloatingBox() {
     <Float speed={1.8} rotationIntensity={1.5} floatIntensity={1.5}>
       <Box ref={meshRef} args={[0.5, 0.5, 0.5]} position={[-2.5, -0.5, -0.5]}>
         <meshStandardMaterial
-          color="#8b5cf6"
+          color="#1d4ed8" // DEEP BLUE
           roughness={0.2}
-          metalness={0.8}
+          metalness={0.9}
+          emissive="#1e3a8a"
+          emissiveIntensity={0.3}
         />
       </Box>
     </Float>
@@ -89,9 +92,11 @@ function FloatingIcosahedron() {
     <Float speed={2.2} rotationIntensity={1} floatIntensity={2}>
       <Icosahedron ref={meshRef} args={[0.4, 1]} position={[-1.8, 1.5, 0]}>
         <meshStandardMaterial
-          color="#f97316"
-          roughness={0.3}
-          metalness={0.7}
+          color="#60a5fa" // SOFT BLUE
+          roughness={0.25}
+          metalness={0.8}
+          emissive="#3b82f6"
+          emissiveIntensity={0.4}
         />
       </Icosahedron>
     </Float>
@@ -99,7 +104,8 @@ function FloatingIcosahedron() {
 }
 
 function ParticleField() {
-  const count = 100;
+  const count = 120;
+
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
@@ -128,7 +134,12 @@ function ParticleField() {
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial size={0.02} color="#14b8a6" transparent opacity={0.6} />
+      <pointsMaterial
+        size={0.025}
+        color="#38bdf8"
+        transparent
+        opacity={0.7}
+      />
     </points>
   );
 }
@@ -137,14 +148,19 @@ export default function ThreeScene() {
   return (
     <div className="absolute inset-0 -z-10">
       <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[10, 10, 5]} intensity={1} />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} color="#14b8a6" />
+
+        {/* LIGHTING (more premium) */}
+        <ambientLight intensity={0.4} />
+        <directionalLight position={[5, 5, 5]} intensity={1} />
+        <pointLight position={[-5, -5, -5]} intensity={0.6} color="#0ea5e9" />
+
+        {/* OBJECTS */}
         <AnimatedSphere />
         <FloatingTorus />
         <FloatingBox />
         <FloatingIcosahedron />
         <ParticleField />
+
       </Canvas>
     </div>
   );
